@@ -8,7 +8,7 @@ repositories {
 }
 
 def allureVersion = "2.19.0",
-    slf4jVersion = "2.0.7"
+    slf4jVersion = "1.7.32"
 
 allure {
     report {
@@ -24,9 +24,13 @@ allure {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 dependencies {
     testImplementation (
-            "com.codeborne:selenide:6.11.2",
+            "com.codeborne:selenide:6.12.2",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "com.github.javafaker:javafaker:1.0.2",
             "org.junit.jupiter:junit-jupiter:5.9.2",
