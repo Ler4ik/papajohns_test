@@ -3,7 +3,10 @@ package ru.papajohns.pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class LocationModal {
@@ -16,6 +19,7 @@ public class LocationModal {
     @Step("Отрыть окно выбора адреса")
     public LocationModal openPage(){
         open("");
+        addressInput.shouldBe(visible);
 
         return this;
     }
@@ -37,7 +41,8 @@ public class LocationModal {
     @Step("Заполнить адрес")
     public LocationModal setAddress(String address){
         addressInput.setValue(address);
-        $$("#modal .SuggestionsPapajohns ul li").findBy(text(address)).click();
+        $$("#modal .SuggestionsPapajohns ul li").findBy(text(address)).shouldBe(visible).click();
+        $("button.AddressButton").shouldHave(text(address), Duration.ofSeconds(30));
 
         return this;
     }

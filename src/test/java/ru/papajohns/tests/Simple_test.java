@@ -18,6 +18,8 @@ public class Simple_test extends TestBase {
 
 
         $(".AddressButton").shouldHave(text("700"));
+
+        sleep(1000);
     }
 
 }
